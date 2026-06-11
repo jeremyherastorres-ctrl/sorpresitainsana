@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una sorpresa muy especial ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght=500;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* ROSITA SUTIL: Un degradado muy suave, casi blanco pastel */
+            background: linear-gradient(135deg, #faf5f6, #f3e9ec);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .pixel-text {
+            font-family: 'Press Start 2P', cursive;
+            color: #ff4d6d;
+            text-shadow: 2px 2px #fff;
+            line-height: 1.6;
+        }
+
+        .screen {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 40px 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(255, 77, 109, 0.1);
+            text-align: center;
+            width: 92%;
+            max-width: 600px;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: all 0.5s ease;
+            border: 5px solid #ff4d6d;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* REGALO */
+        #giftContainer {
+            cursor: pointer;
+            margin: 40px 0;
+            display: inline-block;
+        }
+
+        #gift {
+            font-size: 120px;
+            user-select: none;
+            transition: transform 0.1s ease;
+        }
+
+        .bounce-shake {
+            animation: shake 0.15s infinite alternate;
+        }
+
+        @keyframes shake {
+            0% { transform: scale(1.2) translate(2px, 1px); }
+            100% { transform: scale(1.2) translate(-1px, -2px); }
+        }
+
+        .counter {
+            font-size: 16px;
+            color: #444;
+            font-weight: bold;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 4px solid #ff4d6d;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 10px;
+        }
+
+        .img-caption {
+            font-size: 22px;
+            color: #222;
+            margin-top: 20px;
+            font-weight: 700;
+        }
+
+        .img-counter {
+            font-size: 14px;
+            color: #777;
+            margin-top: 8px;
+        }
+
+        .letter-title {
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+
+        .letter-content {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.7;
+            text-align: left;
+            white-space: pre-line;
+            width: 100%;
+            max-height: 320px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .letter-footer {
+            text-align: right;
+            align-self: flex-end;
+            margin-top: 30px;
+            font-size: 15px;
+            color: #555;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* IMÁGENES FLOTANTES MÁS GRANDES */
+        .floating-heart-img {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            animation: floatUp 4s linear infinite;
+            bottom: -80px;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.6) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-115vh) scale(1.1) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .btn-open {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 18px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 25px;
+            box-shadow: 0 5px #b71540;
+        }
+        .btn-open:active {
+            box-shadow: 0 0px #b71540;
+            transform: translateY(5px);
+        }
+
+        #bgMusic {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: none;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <iframe id="bgMusic" src="https://www.youtube.com/embed/PON_AQUI_EL_ID_DE_YOUTUBE?autoplay=1&loop=1&playlist=PON_AQUI_EL_ID_DE_YOUTUBE" allow="autoplay"></iframe>
+
+    <div id="screenGift" class="screen">
+        <p class="pixel-text" style="font-size: 16px; margin-bottom: 10px;">PARA: NOMBRE DE TU NOVIA ❤️</p>
+        
+        <div id="giftContainer" onclick="hitGift()">
+            <div id="gift">🎁</div>
+        </div>
+        
+        <div class="counter" id="clickCounter">¡Dale clic al regalo para abrirlo! (Faltan 30)</div>
+        <p style="margin-top: 30px; font-size: 18px; font-weight: bold; color: #b71540;">Para la persona más hermosa del mundo.</p>
+    </div>
+
+    <div id="screenGallery" class="screen hidden">
+        <p class="pixel-text" style="font-size: 14px; margin-bottom: 15px; color: #555;">Nuestros momentos ✨</p>
+        <img id="galleryDisplay" src="" alt="Recuerdo" class="gallery-img" onclick="nextImage()">
+        <p id="galleryCaption" class="img-caption"></p>
+        <div id="imgCounterText" class="img-counter">1 de 15</div>
+        <p style="font-size: 13px; color: #888; margin-top: 15px;">(Haz clic en la foto para ver la siguiente)</p>
+    </div>
+
+    <div id="screenPreLetter" class="screen hidden">
+        <h2 class="pixel-text" style="font-size: 20px;">Llegaste al final... 🎁</h2>
+        <p style="margin-top: 20px; font-size: 18px;">Te he preparado una última cosita. Dale al botón para abrirla.</p>
+        <button class="btn-open" onclick="openLetter()">ABRIR CARTA ✉️</button>
+    </div>
+
+    <div id="screenLetter" class="screen hidden">
+        <h1 class="pixel-text letter-title">¡ERES MI MUNDO DE BLOQUES! 💖</h1>
+        
+        <div class="letter-content">
+            Mi amor, quería hacerte algo único porque te mereces el universo entero. Gracias por cada risa, por cada partida juntos, por estar siempre ahí cuando te necesito y por hacerme el chico más feliz del mundo. 
+
+            Eres mi persona favorita, mi lugar seguro y con quien quiero pasar miles de momentos más. Espero que esta pequeña sorpresa te haya sacado una sonrisa. ¡Te amo muchísimo!
+        </div>
+        
+        <div class="letter-footer">
+            Tal día: 10 de Junio, 2026<br>
+            Para: El amor de mi vida ❤️<br>
+            De: Tu novio favorito 😉
+        </div>
+    </div>
+
+    <script>
+        let clicksLeft = 30;
+        
+        // 1. LINK DE LA IMAGEN DE LOS CORAZONES FLOTANTES (Búscala con Ctrl+F)
+        const HEART_IMAGE_URL = "URL_DE_TU_IMAGEN_DE_CORAZON";
+
+        // 2. CONFIGURACIÓN DE TUS 15 IMÁGENES Y SUS TEXTOS
+        const dataGallery = [
+            { src: "URL_DE_DISCORD_1", caption: "El primer día que hablamos 😍" },
+            { src: "URL_DE_DISCORD_2", caption: "Cuando me haces sonreír con tus tonterías" },
+            { src: "URL_DE_DISCORD_3", caption: "Esta foto tuya me encanta demasiado" },
+            { src: "URL_DE_DISCORD_4", caption: "Nuestros días jugando juntos" },
+            { src: "URL_DE_DISCORD_5", caption: "Cada segundo contigo vale oro" },
+            { src: "URL_DE_DISCORD_6", caption: "Me fascina tu carita hermosa" },
+            { src: "URL_DE_DISCORD_7", caption: "Siempre estás en mi mente" },
+            { src: "URL_DE_DISCORD_8", caption: "Gracias por tener tanta paciencia jajaja" },
+            { src: "URL_DE_DISCORD_9", caption: "Tú y yo contra el mundo 🌎" },
+            { src: "URL_DE_DISCORD_10", caption: "La dueña absoluta de mi corazoncito" },
+            { src: "URL_DE_DISCORD_11", caption: "Me encantas más de lo que imaginas" },
+            { src: "URL_DE_DISCORD_12", caption: "Por más desveladas hablando contigo" },
+            { src: "URL_DE_DISCORD_13", caption: "Eres lo más bonito que tengo" },
+            { src: "URL_DE_DISCORD_14", caption: "Ya casi llegamos al final de las fotos..." },
+            { src: "URL_DE_DISCORD_15", caption: "¡Te amo hoy, mañana y siempre! ❤️" }
+        ];
+
+        let currentImgIndex = 0;
+
+        function hitGift() {
+            if (clicksLeft > 0) {
+                clicksLeft--;
+                const gift = document.getElementById('gift');
+                const counterText = document.getElementById('clickCounter');
+                
+                gift.classList.add('bounce-shake');
+                
+                for(let i=0; i<4; i++) {
+                    createFloatingHeart();
+                }
+
+                if (clicksLeft > 0) {
+                    counterText.innerHTML = `¡Sigue golpeando! Enfoque insano... 🔥 (Faltan ${clicksLeft})`;
+                } else {
+                    counterText.innerHTML = "¡REGALO ABIERTO! 🎁";
+                    setTimeout(() => {
+                        document.getElementById('screenGift').classList.add('hidden');
+                        loadGallery();
+                    }, 600);
+                }
+
+                setTimeout(() => {
+                    gift.classList.remove('bounce-shake');
+                }, 150);
+            }
+        }
+
+        function loadGallery() {
+            document.getElementById('screenGallery').classList.remove('hidden');
+            updateGalleryElement();
+        }
+
+        function updateGalleryElement() {
+            const currentData = dataGallery[currentImgIndex];
+            document.getElementById('galleryDisplay').src = currentData.src;
+            document.getElementById('galleryCaption').innerHTML = currentData.caption;
+            document.getElementById('imgCounterText').innerHTML = `${currentImgIndex + 1} de 15`;
+        }
+
+        function nextImage() {
+            currentImgIndex++;
+            if (currentImgIndex < dataGallery.length) {
+                updateGalleryElement();
+            } else {
+                document.getElementById('screenGallery').classList.add('hidden');
+                document.getElementById('screenPreLetter').classList.remove('hidden');
+            }
+        }
+
+        function openLetter() {
+            document.getElementById('screenPreLetter').classList.add('hidden');
+            document.getElementById('screenLetter').classList.remove('hidden');
+        }
+
+        function createFloatingHeart() {
+            const heart = document.createElement('img');
+            heart.src = HEART_IMAGE_URL;
+            heart.classList.add('floating-heart-img');
+            
+            // TAMAÑO DE CORAZÓN MÁS GRANDE: Cambiado para que varíe entre 45px y 65px de ancho
+            const size = Math.random() * 20 + 45; 
+            heart.style.width = size + 'px';
+            heart.style.height = 'auto';
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's'; 
+            
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createFloatingHeart, 450);
+    </script>
+</body>
+</html>
