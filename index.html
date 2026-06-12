@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Una sorpresa bien prowazainsana❤️</title>
+    <title>Una sorpresita bien prowazainsana❤️</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght=500;700&display=swap');
 
@@ -187,7 +187,7 @@
     <iframe id="bgMusic" src="https://www.youtube.com/embed/e23BTGIJcq8?autoplay=1&loop=1&playlist=e23BTGIJcq8" allow="autoplay"></iframe>
 
     <div id="screenGift" class="screen">
-        <p class="pixel-text" style="font-size: 16px; margin-bottom: 10px;">PARA LA PERSONA MÁS ESPECIAL DE MI VIDA :3 ❤️❤️❤️</p>
+        <p class="pixel-text" style="font-size: 16px; margin-bottom: 10px;">PARA LA PERSONA MÁS ESPECIAL EN MI VIDA :3 ❤️❤️❤️</p>
         
         <div id="giftContainer" onclick="hitGift()">
             <div id="gift">🎁</div>
@@ -198,7 +198,7 @@
     </div>
 
     <div id="screenGallery" class="screen hidden">
-        <p class="pixel-text" style="font-size: 14px; margin-bottom: 15px; color: #555;">Nuestros momentos ✨</p>
+        <p class="pixel-text" style="font-size: 14px; margin-bottom: 15px; color: #555;">Momentos insanos waza ✨</p>
         <img id="galleryDisplay" src="" alt="Recuerdo" class="gallery-img" onclick="nextImage()">
         <p id="galleryCaption" class="img-caption"></p>
         <div id="imgCounterText" class="img-counter">1 de 15</div>
@@ -221,9 +221,9 @@
         </div>
         
         <div class="letter-footer">
-            Tal día: 10 de Junio, 2026<br>
-            Para: El amor de mi vida ❤️<br>
-            De: Tu novio favorito 😉
+            30 de Julio de 2026<br>
+            Para: Fátifresas❤️<br>
+            De: Una rata con conciencia xd :3
         </div>
     </div>
 
@@ -254,11 +254,17 @@
 
         let currentImgIndex = 0;
 
-        function hitGift() {
+      function hitGift() {
             if (clicksLeft > 0) {
                 clicksLeft--;
                 const gift = document.getElementById('gift');
                 const counterText = document.getElementById('clickCounter');
+                
+                // Con el primer clic, esto fuerza al reproductor de YouTube a sonar de fondo
+                if (clicksLeft === 29) {
+                    const iframe = document.getElementById('bgMusic');
+                    iframe.src = "https://www.youtube.com/embed/e23BTGIJcq8?autoplay=1&loop=1&playlist=e23BTGIJcq8";
+                }
                 
                 gift.classList.add('bounce-shake');
                 
@@ -267,9 +273,9 @@
                 }
 
                 if (clicksLeft > 0) {
-                    counterText.innerHTML = `¡Sigue golpeando! Enfoque insano... 🔥 (Faltan ${clicksLeft})`;
+                    counterText.innerHTML = `tap tap a la pantallita🗣️🗣️🗣️ 🔥 (Faltan ${clicksLeft})`;
                 } else {
-                    counterText.innerHTML = "¡REGALO ABIERTO! 🎁";
+                    counterText.innerHTML = "Papu regalo abierto 🗣️🎁";
                     setTimeout(() => {
                         document.getElementById('screenGift').classList.add('hidden');
                         loadGallery();
@@ -281,7 +287,6 @@
                 }, 150);
             }
         }
-
         function loadGallery() {
             document.getElementById('screenGallery').classList.remove('hidden');
             updateGalleryElement();
