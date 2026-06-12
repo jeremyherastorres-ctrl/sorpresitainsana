@@ -133,13 +133,15 @@
             line-height: 1.6;
         }
 
-        /* CORAZONES FLOTANTES GRANDES */
-        .floating-heart-img {
+        /* CORAZONES FLOTANTES GRANDES (ESTILO REVISADO PARA EMOJIS) */
+        .floating-heart {
             position: absolute;
             z-index: 1;
             pointer-events: none;
             animation: floatUp 4s linear infinite;
             bottom: -80px;
+            color: #ff4d6d; /* Color por defecto por si acaso */
+            text-shadow: 0 0 5px rgba(255, 77, 109, 0.5); /* Brillo suave */
         }
 
         @keyframes floatUp {
@@ -230,8 +232,7 @@
     <script>
         let clicksLeft = 30;
         
-        // 1. LINK DE LA IMAGEN DE LOS CORAZONES FLOTANTES
-        const ❤️ = "❤️";
+        /* 1. SE ELIMINÓ LA LÍNEA QUE BUSCABA LA IMAGEN ❤️ = "❤️" */
 
         // 2. CONFIGURACIÓN DE TUS 15 IMÁGENES Y SUS TEXTOS
         const dataGallery = [
@@ -268,6 +269,7 @@
                 
                 gift.classList.add('bounce-shake');
                 
+                // CREA CORAZONES CON CADA CLIC
                 for(let i=0; i<4; i++) {
                     createFloatingHeart();
                 }
@@ -314,27 +316,31 @@
             document.getElementById('screenLetter').classList.remove('hidden');
         }
 
+        /* 3. FUNCIÓN MODIFICADA: AHORA CREA UN DIV CON EL EMOJI ❤️ */
         function createFloatingHeart() {
-            const heart = document.createElement('img');
-            heart.src = HEART_IMAGE_URL;
-            heart.classList.add('floating-heart-img');
+            const heart = document.createElement('div'); // Cambiado de 'img' a 'div'
+            heart.innerHTML = "❤️"; // Se inserta el emoji directamente
+            heart.classList.add('floating-heart'); // Nombre de clase corregido
             
-            // CORAZONES GRANDES
-            const size = Math.random() * 20 + 45; 
-            heart.style.width = size + 'px';
-            heart.style.height = 'auto';
+            // CONFIGURACIÓN DE TAMAÑO (USANDO FONT-SIZE PARA TEXTO)
+            const size = Math.random() * 30 + 40; // Tamaños variados entre 40px y 70px
+            heart.style.fontSize = size + 'px';
             
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = Math.random() * 2 + 3 + 's'; 
             
             document.body.appendChild(heart);
 
+            // Se elimina después de 5 segundos para no sobrecargar
             setTimeout(() => {
                 heart.remove();
             }, 5000);
         }
 
-        setInterval(createFloatingHeart, 450);
+        // Crea corazones automáticamente cada cierto tiempo
+        setInterval(createFloatingHeart, 600);
     </script>
+</body>
+</html>
 </body>
 </html>
