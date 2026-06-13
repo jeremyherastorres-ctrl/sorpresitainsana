@@ -186,8 +186,7 @@
 </head>
 <body>
 
-iframe.src = "https://www.youtube.com/embed/TR4i7j9Ry74?autoplay=1&loop=1&playlist=TR4i7j9Ry74";
-
+    <iframe id="bgMusic" src="https://www.youtube.com/embed/TR4i7j9Ry74?autoplay=1&loop=1&playlist=TR4i7j9Ry74" allow="autoplay"></iframe>
 
     <div id="screenGift" class="screen">
         <p class="pixel-text" style="font-size: 16px; margin-bottom: 10px;">PARA LA PERSONA MÁS ESPECIAL EN MI VIDA :3 ❤️❤️❤️</p>
@@ -197,7 +196,7 @@ iframe.src = "https://www.youtube.com/embed/TR4i7j9Ry74?autoplay=1&loop=1&playli
         </div>
         
         <div class="counter" id="clickCounter">tap tap a la pantallita🗣️🗣️🗣️(Faltan 30)</div>
-        <p style="margin-top: 30px; font-size: 18px; font-weight: bold; color: #b71540;">Para la persona ma insana del mundo <3</p>
+        <p style="margin-top: 30px; font-size: 18px; font-weight: bold; color: #b71540;">Para la persona ma insana del mundo &lt;3</p>
     </div>
 
     <div id="screenGallery" class="screen hidden">
@@ -209,7 +208,7 @@ iframe.src = "https://www.youtube.com/embed/TR4i7j9Ry74?autoplay=1&loop=1&playli
     </div>
 
     <div id="screenPreLetter" class="screen hidden">
-        <h2 class="pixel-text" style="font-size: 20px;">Waos llegaste a vel td q pro <3 🎁</h2>
+        <h2 class="pixel-text" style="font-size: 20px;">Waos llegaste a vel td q pro &lt;3 🎁</h2>
         <p style="margin-top: 20px; font-size: 18px;">te he preparado algo una cartita ojala q te guste :3</p>
         <button class="btn-open" onclick="openLetter()">ABRIR CARTAWAZAPROINSANA XDDDDDD✉️</button>
     </div>
@@ -233,9 +232,7 @@ iframe.src = "https://www.youtube.com/embed/TR4i7j9Ry74?autoplay=1&loop=1&playli
     <script>
         let clicksLeft = 30;
         
-        /* 1. SE ELIMINÓ LA LÍNEA QUE BUSCABA LA IMAGEN ❤️ = "❤️" */
-
-        // 2. CONFIGURACIÓN DE TUS 15 IMÁGENES Y SUS TEXTOS
+        // CONFIGURACIÓN DE TUS 15 IMÁGENES Y SUS TEXTOS
         const dataGallery = [
             { src: "URL_DE_DISCORD_1", caption: "El primer día que hablamos 😍" },
             { src: "URL_DE_DISCORD_2", caption: "Cuando me haces sonreír con tus tonterías" },
@@ -255,13 +252,14 @@ iframe.src = "https://www.youtube.com/embed/TR4i7j9Ry74?autoplay=1&loop=1&playli
         ];
 
         let currentImgIndex = 0;
-function hitGift() {
+
+        function hitGift() {
             if (clicksLeft > 0) {
                 clicksLeft--;
                 const gift = document.getElementById('gift');
                 const counterText = document.getElementById('clickCounter');
                 
-                // Aquí cambiamos la línea por tu nueva canción de Jósean Log
+                // Con el primer clic, esto fuerza a tu nueva canción de Jósean Log a sonar
                 if (clicksLeft === 29) {
                     const iframe = document.getElementById('bgMusic');
                     iframe.src = "https://www.youtube.com/embed/TR4i7j9Ry74?autoplay=1&loop=1&playlist=TR4i7j9Ry74";
@@ -288,6 +286,7 @@ function hitGift() {
                 }, 150);
             }
         }
+
         function loadGallery() {
             document.getElementById('screenGallery').classList.remove('hidden');
             updateGalleryElement();
@@ -315,14 +314,12 @@ function hitGift() {
             document.getElementById('screenLetter').classList.remove('hidden');
         }
 
-        /* 3. FUNCIÓN MODIFICADA: AHORA CREA UN DIV CON EL EMOJI ❤️ */
         function createFloatingHeart() {
-            const heart = document.createElement('div'); // Cambiado de 'img' a 'div'
-            heart.innerHTML = "❤️"; // Se inserta el emoji directamente
-            heart.classList.add('floating-heart'); // Nombre de clase corregido
+            const heart = document.createElement('div'); 
+            heart.innerHTML = "❤️"; 
+            heart.classList.add('floating-heart'); 
             
-            // CONFIGURACIÓN DE TAMAÑO (USANDO FONT-SIZE PARA TEXTO)
-            const size = Math.random() * 30 + 40; // Tamaños variados entre 40px y 70px
+            const size = Math.random() * 30 + 40; 
             heart.style.fontSize = size + 'px';
             
             heart.style.left = Math.random() * 100 + 'vw';
@@ -330,16 +327,12 @@ function hitGift() {
             
             document.body.appendChild(heart);
 
-            // Se elimina después de 5 segundos para no sobrecargar
             setTimeout(() => {
                 heart.remove();
             }, 5000);
         }
 
-        // Crea corazones automáticamente cada cierto tiempo
         setInterval(createFloatingHeart, 600);
     </script>
-</body>
-</html>
 </body>
 </html>
