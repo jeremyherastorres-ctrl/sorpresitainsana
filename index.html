@@ -254,22 +254,20 @@
         ];
 
         let currentImgIndex = 0;
-
-      function hitGift() {
+function hitGift() {
             if (clicksLeft > 0) {
                 clicksLeft--;
                 const gift = document.getElementById('gift');
                 const counterText = document.getElementById('clickCounter');
                 
-                // Con el primer clic, esto fuerza al reproductor de YouTube a sonar de fondo
+                // Aquí cambiamos la línea por tu nueva canción de Jósean Log
                 if (clicksLeft === 29) {
                     const iframe = document.getElementById('bgMusic');
-                    iframe.src = "https://www.youtube.com/embed/jhx3hYS__JI?autoplay=1";
+                    iframe.src = "https://www.youtube.com/embed/TR4i7j9Ry74?autoplay=1&loop=1&playlist=TR4i7j9Ry74";
                 }
                 
                 gift.classList.add('bounce-shake');
                 
-                // CREA CORAZONES CON CADA CLIC
                 for(let i=0; i<4; i++) {
                     createFloatingHeart();
                 }
