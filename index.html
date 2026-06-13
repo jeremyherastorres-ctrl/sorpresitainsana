@@ -186,7 +186,7 @@
 </head>
 <body>
 
-    <iframe id="bgMusic" src="https://www.youtube.com/embed/TR4i7j9Ry74?autoplay=1&loop=1&playlist=TR4i7j9Ry74" allow="autoplay"></iframe>
+    <iframe id="bgMusic" src="https://www.youtube.com/embed/TR4i7j9Ry74?autoplay=1&loop=1&playlist=TR4i7j9Ry74&enablejsapi=1" allow="autoplay; encrypted-media"></iframe>
 
     <div id="screenGift" class="screen">
         <p class="pixel-text" style="font-size: 16px; margin-bottom: 10px;">PARA LA PERSONA MÁS ESPECIAL EN MI VIDA :3 ❤️❤️❤️</p>
@@ -259,10 +259,11 @@
                 const gift = document.getElementById('gift');
                 const counterText = document.getElementById('clickCounter');
                 
-                // Con el primer clic, esto fuerza a tu nueva canción de Jósean Log a sonar
+                // SISTEMA FORZADO CON EL PRIMER CLICK: Envía una orden de reproducción directa de YouTube
                 if (clicksLeft === 29) {
                     const iframe = document.getElementById('bgMusic');
-                    iframe.src = "https://www.youtube.com/embed/TR4i7j9Ry74?autoplay=1&loop=1&playlist=TR4i7j9Ry74";
+                    // Esto le inyecta directamente el comando "playVideo" burlando el bloqueo automático
+                    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
                 }
                 
                 gift.classList.add('bounce-shake');
